@@ -23,7 +23,7 @@ module.exports.usersController = {
 
       res.json(user)
     } catch (err) {
-        res.status(400).json({error: `Ошибка при регистрации: ${err.message}`})
+        res.status(400).json({error: `Ошибка при регистрации: такой логин уже существует`})
     }
   },
 

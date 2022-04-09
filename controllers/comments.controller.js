@@ -6,7 +6,7 @@ module.exports.commentsController = {
       const comment = await Comment.create({
         user: req.body.user,
         text: req.body.text,
-        news: req.body.news
+        news: req.body.news,
       });
       return res.json(comment);
     } catch (err) {
@@ -16,10 +16,19 @@ module.exports.commentsController = {
 
   getCommentaries: async (req, res) => {
       try {
-        const comments = await Comment.find()
+        const comments = await Comment.find().populate('user')
         res.json(comments)
       } catch (err) {
           res.json({error: err.message})
       }
-  }
+  },
+
+  deleteComment: async (req, res) => {
+    try {
+      const comments = await Comment.findByIdAndDelete(req.params.id)
+      res.json(comments)
+    } catch (err) {
+        res.json({error: err.message})
+    }
+}
 };

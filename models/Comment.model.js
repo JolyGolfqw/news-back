@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
+
 const commentSchema = mongoose.Schema({
+
+  
 
   news: {
     ref: 'News',
@@ -17,6 +20,11 @@ const commentSchema = mongoose.Schema({
     ref: "User",
     type: mongoose.Schema.Types.ObjectId,
   },
+
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
