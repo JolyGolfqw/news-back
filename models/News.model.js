@@ -21,13 +21,6 @@ const newsSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-
-  comments: [
-    {
-      ref: "Comment",
-      type: mongoose.Schema.Types.ObjectId,
-    },
-  ],
 });
 
 const News = mongoose.model("News", newsSchema);

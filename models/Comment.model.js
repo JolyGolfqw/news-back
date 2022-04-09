@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 
 const commentSchema = mongoose.Schema({
+
+  news: {
+    ref: 'News',
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+
   text: {
     type: String,
     required: true,

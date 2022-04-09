@@ -32,18 +32,18 @@ module.exports.usersController = {
     const candidate = await User.findOne({login})
 
     if (!candidate) {
-        return res.status(401).json('Неверный логин')
+        return res.status(401).json({error: 'Неверный логин'})
     }
 
-    const valid = bcrypt.compare(password, candidate.password)
+    const valid = await bcrypt.compare(password, candidate.password)
 
     if (!valid) {
-        return res.status(401).json('Неверный пароль')
+        return res.status(401).json({error: 'Неверный пароль'})
     }
 
     const payload = {id: candidate._id}
 
-    const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '24h'})
-    res.json(token)
+    const token = await jwt.sign(payload, process.env.SECRET, {expiresIn: '24h'})
+    res.json({token, id: payload.id})
   },
 };
