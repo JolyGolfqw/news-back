@@ -7,6 +7,7 @@ module.exports.commentsController = {
         user: req.body.user,
         text: req.body.text,
         news: req.body.news,
+        author: req.body.author
       });
       return res.json(comment);
     } catch (err) {
@@ -16,7 +17,7 @@ module.exports.commentsController = {
 
   getCommentaries: async (req, res) => {
       try {
-        const comments = await Comment.find().populate('user')
+        const comments = await Comment.find()
         res.json(comments)
       } catch (err) {
           res.json({error: err.message})

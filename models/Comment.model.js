@@ -11,6 +11,11 @@ const commentSchema = mongoose.Schema({
     required: true
   },
 
+  author: {
+    type: String,
+    required: true
+  },
+
   text: {
     type: String,
     required: true,
